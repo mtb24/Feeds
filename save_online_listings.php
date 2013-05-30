@@ -102,7 +102,7 @@ while( $row = mysql_fetch_assoc($results) ){
 	$data_string .= $link . "\t" . 
 			$condition . "\t" . 
 			$brand . "\t" . 
-			$title . "\t" . 
+			$brand." ".$title . "\t" . 
 			$description . "\t" . 
 			$image_link . "\t" . 
 			$product_type . "\t" . 

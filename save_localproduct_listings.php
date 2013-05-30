@@ -92,7 +92,7 @@ while( $row = mysql_fetch_assoc($results) ){
 	//concat the data onto our string
 	//using tabs as delimiters
 	$data_string .= $product_id . "\t" . 
-			$title . "\t" .
+			$brand." ".$title . "\t" .
 			$webitemid . "\t" .
 			$gtin . "\t" . 
 			$mpn . "\t" . 
