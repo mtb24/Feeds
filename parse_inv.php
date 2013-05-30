@@ -112,6 +112,7 @@ if($handle){
 								$gtin_assoc['Color']);
 			// reset the array before the next row
 			//$gtin_assoc = array();
+
 		}
 		//////////////////////////
 
@@ -139,44 +140,14 @@ if($handle){
 								$mpn_assoc['Color']);
 			// reset the array before the next row
 			//$mpn_assoc = array();
-		}
-		//////////////////////////
-
-
-		//////////////////////////
-		//ELSE IF NO MATCH FOUND - DO NOT STORE BECAUSE THERE IS NO IMAGE REFERRENCE
-		else{
-
-			//echo "No match found....skipping item<br />";
-			// reset the arrays before the next row
-			//$gtin_assoc = array();
-			//$mpn_assoc = array();
-
-			//insert a new record in LOCAL_PRODUCT_LISTINGS
-			//$online_id = NULL;
-			//$insert_id = insertNewLocalProductListing(
-			//					$description,
-			//					NULL,
-			//					$gtin1, 
-			//					$mpn, 
-			//					$brand, 
-			//					$price, 
-			//					'new', 
-			//					NULL, 
-			//					NULL, 
-			//					NULL, 
-			//					NULL);
 
 		}
-		//////////////////////////
-
 
 		///////////////////////////////////////////
 		//INSERT INTO PRICE_QUANTITY
 		//only insert if there was a GTIN or MPN match
-		//if($mpn_assoc){
 		if($mpn_assoc || $gtin_assoc){
-
+			
 			//split up the boh_location first on *three pipes*
 			$exploded_pipe_array = explode('|||', $boh_location);
 		
@@ -192,12 +163,14 @@ if($handle){
 				$store_id = getStoreIDFromName($store_name);
 
 				//insert the new records in the PRICE_QUANTITY table
-				insertNewPriceQuantity(
+				if($quantity > 1){
+					insertNewPriceQuantity(
 						       $store_id, 
 						       $online_id, 
 						       $quantity, 
 						       $price, 
 						       'in stock');
+				}
 			}
 		}
 		///////////////////////////////////////////
