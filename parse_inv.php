@@ -34,16 +34,16 @@ $gtin_matches = 0;
 //////////////////////////////
 if($handle){
 
-	echo "RPRO file downloaded. Opening...<br />";
+    echo "RPRO file downloaded. Opening...<br />";
 	
-	//empty the LOCAL_PRODUCT_LISTINGS table
-	emptyTable('LOCAL_PRODUCT_LISTINGS'); 
+    //empty the LOCAL_PRODUCT_LISTINGS table
+    emptyTable('LOCAL_PRODUCT_LISTINGS'); 
 
-	//empty the PRICE_QUANTITY table
-	emptyTable('PRICE_QUANTITY'); 
+    //empty the PRICE_QUANTITY table
+    emptyTable('PRICE_QUANTITY'); 
 
-	//declare a counter so we don't insert the first line
-	$count = 0;
+    //declare a counter so we don't insert the first line
+    $count = 0;
 
     ///////////////////////
     //loop through line by line
@@ -81,26 +81,29 @@ if($handle){
 		$gtin2 = $exploded_tab_array[19];
 
 
-		//first we need to prepend '00' the GTIN
+		// prepend '00' the GTIN
 		$concatted_gtin = '00' . $gtin1;
 
-		//call our functions to check if a matching 
-		//record exists in ONLINE_LISTINGS
+		// Check if a matching record exists in ONLINE_LISTINGS table
 		$mpn_assoc = getOnlineListingAssocFromMPN($mpn);
 		$gtin_assoc = getOnlineListingAssocFromGTIN($concatted_gtin);
+		
 
 		//////////////////////////
-		//IF MATCHING GTIN FOUND
+		// IF MATCHING GTIN FOUND
 		if($gtin_assoc){
 			
-			//echo "Found a GTIN match!<br />";
 			$gtin_matches++;
 
-			//insert a new record in LOCAL_PRODUCT_LISTINGS
+			// Check if item is in a group, and update tables if true
 			$online_id = $gtin_assoc['OldID'];
+			$item_group_id = (checkItemsForGroups($online_id)) ? '"'.my_split($online_id).'"' : '';
+			
+			// insert a new record in LOCAL_PRODUCT_LISTINGS
 			$insert_id = insertNewLocalProductListing(
 								$description,
 								$online_id,
+								$item_group_id,
 								$gtin1, 
 								$mpn, 
 								$brand, 
@@ -118,17 +121,20 @@ if($handle){
 
 
 		//////////////////////////
-		//IF MATCHING MPN FOUND
+		// IF MATCHING MPN FOUND
 		else if($mpn_assoc){
 
-			//echo "Found an MPN match!<br />";
 			$mpn_matches++;
 
-			//insert a new record in LOCAL_PRODUCT_LISTINGS
+ 			// Check if item is in a group, and update tables if true
 			$online_id = $mpn_assoc['OldID'];
+			$item_group_id = (checkItemsForGroups($online_id)) ? '"'.my_split($online_id).'"' : '';
+			
+			// insert a new record in LOCAL_PRODUCT_LISTINGS
 			$insert_id = insertNewLocalProductListing(
 								$description,
 								$online_id,
+								$item_group_id,
 								$gtin1, 
 								$mpn, 
 								$brand, 
@@ -138,14 +144,11 @@ if($handle){
 								$mpn_assoc['ImageLink'], 
 								$mpn_assoc['Size'],  
 								$mpn_assoc['Color']);
-			// reset the array before the next row
-			//$mpn_assoc = array();
-
 		}
 
 		///////////////////////////////////////////
-		//INSERT INTO PRICE_QUANTITY
-		//only insert if there was a GTIN or MPN match
+		// if there was a GTIN or MPN match insert into PRICE_QUANTITY
+		// THEN update tables if item is in a group
 		if($mpn_assoc || $gtin_assoc){
 			
 			//split up the boh_location first on *three pipes*
@@ -166,9 +169,10 @@ if($handle){
 				if($quantity > 1){
 					insertNewPriceQuantity(
 						       $store_id, 
-						       $online_id, 
-						       $quantity, 
-						       $price, 
+						       $online_id,
+						       $item_group_id,
+						       $quantity,
+						       $price,
 						       'in stock');
 				}
 			}

@@ -35,6 +35,7 @@ $remote_outfile = $feedSettings[2]['upload_path'];
 $data_string = 'itemid' . "\t" . 
 		'title' . "\t" .
 		'webitemid' . "\t" .
+		'item_group_id' . "\t" .
 		'gtin' . "\t" . 
 		'mpn' . "\t" . 
 		'brand' . "\t" . 
@@ -71,6 +72,7 @@ while( $row = mysql_fetch_assoc($results) ){
 	$product_id = stripslashes($row['ProductID']);
 	$title = stripslashes($row['Title']);
 	$webitemid = stripcslashes($row['webitemid']);
+	$item_group_id = stripcslashes($row['item_group_id']);
 	$gtin = stripslashes($row['GTIN']);
 	$mpn = stripslashes($row['MPN']);
 	$brand = stripslashes($row['Brand']);
@@ -94,6 +96,7 @@ while( $row = mysql_fetch_assoc($results) ){
 	$data_string .= $product_id . "\t" . 
 			$brand." ".$title . "\t" .
 			$webitemid . "\t" .
+			$item_group_id . "\t" .
 			$gtin . "\t" . 
 			$mpn . "\t" . 
 			$brand . "\t" . 
@@ -107,8 +110,6 @@ while( $row = mysql_fetch_assoc($results) ){
 			$product_type . "\t" .
 			$googleCategory . "\n";
 }
-
-//echo "<br><br>data_string is $data_string<br>";
 
 //////////////////////////////////////
 //////////////////////////////////////

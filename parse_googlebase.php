@@ -51,7 +51,7 @@ if($handle){
 		$description = str_replace(',','',$description);
 		$image_link = $exploded_tab_array[5];
 		$product_type = $exploded_tab_array[6];
-		$google_product_category = $exploded_tab_array[7];  //str_replace($SE_categories, $Google_categories, $product_type);
+		$google_product_category = $exploded_tab_array[7];
 		$price = $exploded_tab_array[8];
 		$availability = $exploded_tab_array[9];
 		$expiration_date = $exploded_tab_array[10];
@@ -63,37 +63,28 @@ if($handle){
 		$shipping_weight = $exploded_tab_array[16];
 		(in_array($mpn, $freeShippingByMPN)) ? $shipping = 'US:::0.00 USD' : $shipping = '';
 
-		/* for debugging
-		if (in_array($mpn, $freeShippingByMPN)) {
-			$shipping = 'US:::0.00 USD';
-			$shipping_deal_count++;
-			echo "$title : $shipping<br />";
-		}
-		*/
-
-
 		///////////////
 		//hack so we don't insert the first line
 		if($count > 0){
 			
 			//call our function to add a new Item and get back the InsertID
 			$item_id = insertNewOnlineListing(
-						$link, 
-						$condition, 
-						$brand, 
-						$title, 
-						$description, 
-						$image_link, 
-						$product_type, 
-						$google_product_category, 
-						$price, 
-						$availability, 
-						$expiration_date, 
-						$id, 
-						$mpn, 
-						$gtin, 					
-						$color, 
-						$size, 
+						$link,
+						$condition,
+						$brand,
+						$title,
+						$description,
+						$image_link,
+						$product_type,
+						$google_product_category,
+						$price,
+						$availability,
+						$expiration_date,
+						$id,
+						$mpn,
+						$gtin,
+						$color,
+						$size,
 						$shipping_weight,
 						$shipping,
 						$gender,

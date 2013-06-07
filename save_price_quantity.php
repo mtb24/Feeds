@@ -1,16 +1,10 @@
 <?php
-
-/*
-//////////////////////////////
 //////////////////////////////
 //this is save_price_quantity.php
 
 //this script saves the data 
 //in PRICE_QUANTITY to a remote text file
 //////////////////////////////
-//////////////////////////////
-*/
-
 
 //increased error reporting
 error_reporting(E_ALL | E_STRICT);
@@ -32,7 +26,8 @@ $remote_outfile = $feedSettings[5]['upload_path'];
 //string which we'll concat all the data on to
 //we'll initialize it as the column titles
 $data_string =  'store code' . "\t" . 
-		'itemid' . "\t" . 
+		'itemid' . "\t" .
+		'item_group_id' . "\t" .
 		'quantity' . "\t" . 
 		'price' . "\t" . 
 		'availability' . "\n"; 
@@ -44,7 +39,7 @@ $query = "select * from PRICE_QUANTITY where 1";
 $results = mysql_query($query);
 //check for general error
 if(!$results){
-	$error_message = "Im sorry, there was a database select error. 375";
+	$error_message = "Im sorry, there was a database error";
 	errorHandler($error_message);
 }
 /////////////////////
@@ -61,6 +56,7 @@ while( $row = mysql_fetch_assoc($results) ){
 	$store_product_id = stripslashes($row['StoreProductID']);
 	$store_id = stripslashes($row['StoreID']);
 	$product_id = stripslashes($row['ProductID']);
+	$item_group_id = stripcslashes($row['item_group_id']);
 	$quantity = stripslashes($row['Quantity']);
 	$price = stripslashes($row['PriceOverride']);
 	$availability = stripslashes($row['Availability']);
@@ -68,13 +64,12 @@ while( $row = mysql_fetch_assoc($results) ){
 	//concat the data onto our string
 	//using tabs as delimiters
 	$data_string .= $store_id . "\t" . 
-			$product_id . "\t" . 
+			$product_id . "\t" .
+			$item_group_id . "\t" .
 			$quantity . "\t" . 
 			"USD $price" . "\t" . 
 			$availability . "\n"; 
 }
-
-//echo "<br><br>data_string is $data_string<br>";
 
 //////////////////////////////////////
 //////////////////////////////////////

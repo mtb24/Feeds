@@ -219,6 +219,7 @@ function insertNewOnlineListing(
 function insertNewLocalProductListing(
 				        $title,
 					$webitemid,
+					$item_group_id,
 					$gtin, 
 					$mpn, 
 					$brand, 
@@ -233,6 +234,7 @@ function insertNewLocalProductListing(
 	//escape the values for database insertion
 	$title = mysql_real_escape_string($title);
 	$webitemid = mysql_real_escape_string($webitemid);
+	$item_group_id = mysql_real_escape_string($item_group_id);
 	$gtin = mysql_real_escape_string($gtin);
 	$mpn = mysql_real_escape_string($mpn);
 	$brand = mysql_real_escape_string($brand);
@@ -247,6 +249,7 @@ function insertNewLocalProductListing(
 	$query = "insert into LOCAL_PRODUCT_LISTINGS (
 	                                                Title,
 							webitemid,
+							item_group_id,
 							GTIN,
 							MPN,
 							Brand, 
@@ -260,17 +263,16 @@ function insertNewLocalProductListing(
 
 							('$title',
 							'$webitemid',
+							'$item_group_id',
 							'$gtin',
 							'$mpn',
-							'$brand', 
+							'$brand',
 							'$price',
 							'$condition',
 							'$url',
 							'$image_url', 
 							'$size',
 							'$color')";
-
-	//echo "$query<br><br>";
 
 	$results = mysql_query($query);
 	//check for general error
@@ -284,9 +286,10 @@ function insertNewLocalProductListing(
 
 
 //function to insert a new record in PRICE_QUANTITY
-function insertNewPriceQuantity($storeid,$productid,$local_quantity,$reg_price,$store_availability) {
+function insertNewPriceQuantity($storeid,$productid,$item_group_id,$local_quantity,$reg_price,$store_availability) {
 	
 	//escape the values for database insertion
+	$item_group_id = mysql_real_escape_string($item_group_id);
 	$local_quantity = mysql_real_escape_string($local_quantity);
 	$reg_price = mysql_real_escape_string($reg_price);
 	$store_availability = mysql_real_escape_string($store_availability);
@@ -294,6 +297,7 @@ function insertNewPriceQuantity($storeid,$productid,$local_quantity,$reg_price,$
 	//here's our query
 	$query = "insert into PRICE_QUANTITY (  StoreID,
 	                                        ProductID,
+						item_group_id,
 						Quantity,
 						PriceOverride,
 						Availability)
@@ -301,14 +305,15 @@ function insertNewPriceQuantity($storeid,$productid,$local_quantity,$reg_price,$
 
 						('$storeid',
 						 '$productid',
+						 '$item_group_id',
 						 '$local_quantity',
-						 '$reg_price', 
+						 '$reg_price',
 						 '$store_availability')";
 
 	$results = mysql_query($query);
 	//check for general error
 	if(!$results){
-		$error_message = "Im sorry, there was a database insert error. 265";
+		$error_message = "Im sorry, there was a database insert error";
 		//errorHandler($error_message);
 	}
 	//echo "$query<br><br>";
@@ -633,8 +638,8 @@ function uploadFile($dest,$source,$file_name)
 }
 
 //function to truncate the table passed as arg
-function emptyTable($table){
-
+function emptyTable($table)
+{
 	$query = "truncate $table";
 
 	$results = mysql_query($query);
@@ -643,6 +648,13 @@ function emptyTable($table){
 		$error_message = "I'm sorry, there was a database truncate error";
 		errorHandler(  mysql_error() );
 	}
+}
+
+// split id on '-' and return first part of string
+function my_split($string)
+{
+	$parts = preg_split('/-/', $string, 1);
+	return $parts[0];
 }
 
 ?>
