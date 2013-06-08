@@ -657,4 +657,13 @@ function my_split($string)
 	return $parts[0];
 }
 
+// Return true if more than 1 item's id begins with common identifier in ONLINE_LISTINGS table
+function checkItemsForGroups($checkID)
+{
+	// query to see if checkID exists more than once
+	$query = "SELECT COUNT(*)  FROM `ONLINE_LISTINGS` WHERE `OldID` LIKE '$checkID-%'";
+	$number = mysql_query($query);
+	return ($number > 1) ? true : false;
+}
+
 ?>
