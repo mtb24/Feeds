@@ -217,7 +217,7 @@ function insertNewOnlineListing(
 
 //function to insert a new record in LOCAL_PRODUCT_LISTINGS
 function insertNewLocalProductListing(
-				        $title,
+				    $title,
 					$webitemid,
 					$item_group_id,
 					$gtin, 
@@ -247,7 +247,7 @@ function insertNewLocalProductListing(
 
 	//here's our query
 	$query = "insert into LOCAL_PRODUCT_LISTINGS (
-	                                                Title,
+	                        Title,
 							webitemid,
 							item_group_id,
 							GTIN,
@@ -295,14 +295,14 @@ function insertNewPriceQuantity($storeid,$productid,$item_group_id,$local_quanti
 	$store_availability = mysql_real_escape_string($store_availability);
 
 	//here's our query
-	$query = "insert into PRICE_QUANTITY (  StoreID,
-	                                        ProductID,
+	$query = "insert into PRICE_QUANTITY (  
+		                StoreID,
+	                    ProductID,
 						item_group_id,
 						Quantity,
 						PriceOverride,
 						Availability)
 					values 
-
 						('$storeid',
 						 '$productid',
 						 '$item_group_id',
@@ -653,7 +653,7 @@ function emptyTable($table)
 // split id on '-' and return first part of string
 function my_split($string)
 {
-	$parts = preg_split('/-/', $string, 1);
+	$parts = preg_split('/-/', $string, -1);
 	return $parts[0];
 }
 

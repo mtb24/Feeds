@@ -97,7 +97,7 @@ if($handle){
 
 			// Check if item is in a group, and update tables if true
 			$online_id = $gtin_assoc['OldID'];
-			$item_group_id = (checkItemsForGroups($online_id)) ? '"'.my_split($online_id).'"' : '';
+			$item_group_id = (checkItemsForGroups($online_id)) ? my_split($online_id) : '';
 			
 			// insert a new record in LOCAL_PRODUCT_LISTINGS
 			$insert_id = insertNewLocalProductListing(
@@ -128,7 +128,7 @@ if($handle){
 
  			// Check if item is in a group, and update tables if true
 			$online_id = $mpn_assoc['OldID'];
-			$item_group_id = (checkItemsForGroups($online_id)) ? '"'.my_split($online_id).'"' : '';
+			$item_group_id = (checkItemsForGroups($online_id)) ? my_split($online_id) : '';
 			
 			// insert a new record in LOCAL_PRODUCT_LISTINGS
 			$insert_id = insertNewLocalProductListing(

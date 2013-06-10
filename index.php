@@ -6,7 +6,7 @@ require_once('mb_feeds_functions.php');
 <head>
     <title>Feed Control Panel</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.spinner.js"></script>
     <script type="text/javascript" src="js/kendoui/js/kendo.all.min.js"></script>
     <link rel="stylesheet" href="js/kendoui/styles/kendo.common.min.css" />
