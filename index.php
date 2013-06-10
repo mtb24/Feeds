@@ -8,9 +8,9 @@ require_once('mb_feeds_functions.php');
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.spinner.js"></script>
-    <script type="text/javascript" src="js/kendoui/js/kendo.all.min.js"></script>
-    <link rel="stylesheet" href="js/kendoui/styles/kendo.common.min.css" />
-    <link rel="stylesheet" href="js/kendoui/styles/kendo.default.min.css" />
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -120,7 +120,7 @@ require_once('mb_feeds_functions.php');
                 }, 1000);
 */
         /* Run Feeds */
-        $("button.runFeeds").click(function(){
+        $(document).on("click", "button.runFeeds", function(){
             /* check for testing state */
             var testing = $("input[name='testing']").attr("checked") === 'checked' ? true : false;
             var $this = $(this);
@@ -215,7 +215,7 @@ require_once('mb_feeds_functions.php');
         
         /* Manual Feed Functions */
         
-        $("a#runSPE").live(function(){
+        $(document).on("click", "a#runSPE", function(){
             var $this = $(this);
             var opts = {
                 img: 'images/ajax-loader-green.gif',
@@ -234,7 +234,7 @@ require_once('mb_feeds_functions.php');
             return false;
         });
 
-        $("a#getSE").live(function(){
+        $(document).on("click", "a#getSE", function(){
             var $this = $(this);
             var opts = {
                 img: 'images/ajax-loader-green.gif',
@@ -247,7 +247,7 @@ require_once('mb_feeds_functions.php');
             return false;
         });
 
-        $("a#runSE").live(function(){
+        $(document).on("click", "a#runSE", function(){
             var $this = $(this);
             var opts = {
                 img: 'images/ajax-loader-green.gif',
@@ -265,7 +265,7 @@ require_once('mb_feeds_functions.php');
             });
             return false;
         });
-        $("a#runRpro").live(function(){
+        $(document).on("click", "a#runRpro", function(){
             var $this = $(this);
             var opts = {
                 img: 'images/ajax-loader-green.gif',
@@ -283,7 +283,7 @@ require_once('mb_feeds_functions.php');
             });
             return false;
         });
-        $("a#runOnline").live(function(){
+        $(document).on("click", "a#runOnline", function(){
             var $this = $(this);
             var opts = {
                 img: 'images/ajax-loader-green.gif',
@@ -301,7 +301,7 @@ require_once('mb_feeds_functions.php');
             });
             return false;
         });
-        $("a#runLocal").live(function(){
+        $(document).on("click", "a#runLocal", function(){
             var $this = $(this);
             var opts = {
                 img: 'images/ajax-loader-green.gif',
@@ -319,7 +319,7 @@ require_once('mb_feeds_functions.php');
             });
             return false;
         });
-        $("a#runPrice").live(function(){
+        $(document).on("click", "a#runPrice", function(){
             var $this = $(this);
             var opts = {
                 img: 'images/ajax-loader-green.gif',
@@ -337,7 +337,7 @@ require_once('mb_feeds_functions.php');
             });
             return false;
         });
-        $("a#runqBike").live(function(){
+        $(document).on("click", "a#runqBike", function(){
             var $this = $(this);
             var opts = {
                 img: 'images/ajax-loader-green.gif',
@@ -355,7 +355,7 @@ require_once('mb_feeds_functions.php');
             });
             return false;
         });
-        $("a#runBizList").live(function(){
+        $(document).on("click", "a#runBizList", function(){
             var $this = $(this);
             var opts = {
                 img: 'images/ajax-loader-green.gif',
