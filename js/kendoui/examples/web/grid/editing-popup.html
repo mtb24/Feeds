@@ -10,9 +10,17 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
             <div id="example" class="k-content">
             <div id="grid"></div>
 
@@ -44,7 +52,7 @@
                                 }
                             },
                             batch: true,
-                            pageSize: 30,
+                            pageSize: 20,
                             schema: {
                                 model: {
                                     id: "ProductID",
@@ -62,14 +70,14 @@
                     $("#grid").kendoGrid({
                         dataSource: dataSource,
                         pageable: true,
-                        height: 400,
+                        height: 430,
                         toolbar: ["create"],
                         columns: [
                             { field:"ProductName", title: "Product Name" },
-                            { field: "UnitPrice", title:"Unit Price", format: "{0:c}", width: "150px" },
-                            { field: "UnitsInStock", title:"Units In Stock", width: "150px" },
+                            { field: "UnitPrice", title:"Unit Price", format: "{0:c}", width: "100px" },
+                            { field: "UnitsInStock", title:"Units In Stock", width: "100px" },
                             { field: "Discontinued", width: "100px" },
-                            { command: ["edit", "destroy"], title: "&nbsp;", width: "210px" }],
+                            { command: ["edit", "destroy"], title: "&nbsp;", width: "160px" }],
                         editable: "popup"
                     });
                 });

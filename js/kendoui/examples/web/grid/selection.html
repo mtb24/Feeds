@@ -10,70 +10,101 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
-            <script src="../../content/shared/js/people.js"></script>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
+            <script src="../../content/shared/js/orders.js"></script>
 
         <div id="example" class="k-content">
-            <h3>Grid with multiple row selection enabled</h3>
-            <div id="rowSelection" style="width:600px;"></div>
 
-            <h3>Grid with multiple cell selection enabled</h3>
-            <div id="cellSelection" style="width:600px;"></div>
+            <div class="demo-section">
+                <h3>Grid with multiple row selection enabled</h3>
+                <div id="rowSelection"></div>
+            </div>
+
+            <div class="demo-section">
+                <h3>Grid with multiple cell selection enabled</h3>
+                <div id="cellSelection"></div>
+            </div>
 
             <script>
-                $(document).ready(function() {
+                $(document).ready(function () {
                     $("#rowSelection").kendoGrid({
                         dataSource: {
-                            data: createRandomData(20),
+                            data: orders,
                             pageSize: 5
                         },
                         selectable: "multiple",
-                        pageable: true,
+                        pageable: {
+                            buttonCount: 5
+                        },
                         scrollable: false,
                         navigatable: true,
                         columns: [
                             {
-                                field: "FirstName",
-                                title: "First Name"
+                                field: "ShipCountry",
+                                title: "Ship Country",
+                                width: 200
                             },
                             {
-                                field: "LastName",
-                                title: "Last Name"
+                                field: "Freight",
+                                width: 200
                             },
                             {
-                                field: "Age"
+                                field: "OrderDate",
+                                title: "Order Date",
+                                format: "{0:dd/MM/yyyy}"
                             }
                         ]
                     });
 
                     $("#cellSelection").kendoGrid({
                         dataSource: {
-                            data: createRandomData(20),
+                            data: orders,
                             pageSize: 5
                         },
                         selectable: "multiple cell",
-                        pageable: true,
+                        pageable: {
+                            buttonCount: 5
+                        },
                         scrollable: false,
                         navigatable: true,
                         columns: [
                             {
-                                field: "FirstName",
-                                title: "First Name"
+                                field: "ShipCountry",
+                                title: "Ship Country",
+                                width: 200
                             },
                             {
-                                field: "LastName",
-                                title: "Last Name"
+                                field: "Freight",
+                                width: 200
                             },
                             {
-                                field: "Age",
-                                title: "Age"
+                                field: "OrderDate",
+                                title: "Order Date",
+                                format: "{0:dd/MM/yyyy}"
                             }
                         ]
                     });
                 });
             </script>
+            <style scoped="scoped">
+                .demo-section {
+                    width: 600px;
+                }
+                .demo-section h3 {
+                    margin: 5px 0 15px 0;
+                    text-align: center;
+                }
+            </style>
         </div>
 </body>
 </html>

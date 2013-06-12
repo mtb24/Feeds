@@ -41,7 +41,6 @@
 
                 function createChart() {
                     $("#chart").kendoChart({
-                        theme: $(document).data("kendoSkin") || "default",
                         title: {
                             text: "Break-up of Spain Electricity Production for 2008"
                         },
@@ -57,6 +56,7 @@
                             categoryField: "source",
                             explodeField: "explode"
                         }],
+                        seriesColors: ["#42a7ff", "#666666", "#999999", "#cccccc"],
                         tooltip: {
                             visible: true,
                             template: "${ category } - ${ value }%"

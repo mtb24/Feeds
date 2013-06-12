@@ -10,79 +10,79 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
     
         <div id="example" class="k-content">
-            <div id="movies">
-                <input id="titles"/>
+           
+            <div class="demo-section">
+                <h2>Customers</h2>
+                <input id="customers" style="width: 400px;"/>
+                <p>
+                    Start typing to find a customer.
+                </p>
             </div>
 
             <script>
                 $(document).ready(function() {
-                    $("#titles").kendoAutoComplete({
-                        minLength: 3,
-                        dataTextField: "Name",
-                        template: '<img src="${ data.BoxArt.SmallUrl }" alt="${ data.Name }" />' +
-                                  '<h3>' +
-                                      '${ data.Name } ' +
-                                      '<span>${ data.ReleaseYear }</span>' +
-                                  '</h3>',
+                    var autocomplete = $("#customers").kendoAutoComplete({
+                        minLength: 1,
+                        dataTextField: "ContactName",
+                        template: '<img src=\"../../content/web/Customers/${data.CustomerID}.jpg\" alt=\"${data.CustomerID}\" />' +
+                                '<h3>${ data.ContactName }</h3>' +
+                                '<p>${ data.CompanyName }</p>',
                         dataSource: {
-                            type: "odata",
-                            serverFiltering: true,
-                            serverPaging: true,
-                            pageSize: 20,
                             transport: {
-                                read: "http://odata.netflix.com/Catalog/Titles"
+                                read:{
+                                    dataType: "jsonp",
+                                    url: "http://demos.kendoui.com/service/Customers"
+                                }
                             }
-                        }
-                    });
-
-                    // set width of the drop-down list
+                        },
+                        height: 370,
+                    }).data("kendoAutoComplete");
                 });
             </script>
 
             <style scoped>
-                #movies {
-					width: 369px;
-					height: 71px;
-					padding: 211px 0 0 141px;
-					background: url('../../content/web/autocomplete/movies.png') transparent no-repeat 0 0;
-					margin: 30px auto;
- 				}
-                .k-autocomplete {
-                	width: 240px;
-                    vertical-align: middle;
+                .demo-section {
+                    width: 400px;
+                    margin: 35px auto 50px;
+                    padding: 30px;
                 }
-
-                #titles-list .k-item {
+                .demo-section h2 {
+                    text-transform: uppercase;
+                    font-size: 1.2em;
+                    margin-bottom: 10px;
+                }
+                #customers-list .k-item {
                     overflow: hidden; /* clear floated images */
                 }
-
-                #titles-list img {
+                #customers-list img {
+                    -moz-box-shadow: 0 0 2px rgba(0,0,0,.4);
+                    -webkit-box-shadow: 0 0 2px rgba(0,0,0,.4);
+                    box-shadow: 0 0 2px rgba(0,0,0,.4);
                     float: left;
-                    width: 64px;
-                    height: 90px;
-                    margin: 10px 5px;
-                    -webkit-box-shadow: 0 1px 2px #333;
-                    box-shadow: 0 1px 2px #333;
-                    -webkit-border-radius: 4px;
-                    border-radius: 4px;
-                    font-size: .7em;
-                    line-height: 1em;
+                    margin: 5px 20px 5px 0px;
                 }
-                #titles-list h3 {
-                    margin: 20px 0 0 80px;
-                    font-size: 1.2em;
-                    line-height: 1.2em;
+                #customers-list h3 {
+                    margin: 30px 0 10px 0;
+                    font-size: 2em;
                 }
-                #titles-list h3 span {
-                    display: block;
-                    font-size: .7em;
+                #customers-list p {
+                    margin: 0;
                 }
             </style>
         </div>
+
 </body>
 </html>

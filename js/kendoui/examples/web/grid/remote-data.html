@@ -10,9 +10,17 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
     
         <div id="example" class="k-content">
             <div id="grid"></div>
@@ -35,12 +43,12 @@
                                     }
                                 }
                             },
-                            pageSize: 10,
+                            pageSize: 20,
                             serverPaging: true,
                             serverFiltering: true,
                             serverSorting: true
                         },
-                        height: 250,
+                        height: 430,
                         filterable: true,
                         sortable: true,
                         pageable: true,
@@ -52,15 +60,16 @@
                             {
                                 field: "OrderDate",
                                 title: "Order Date",
-                                width: 100,
+                                width: 120,
                                 format: "{0:MM/dd/yyyy}"
                             }, {
                                 field: "ShipName",
                                 title: "Ship Name",
-                                width: 200
+                                width: 260
                             }, {
                                 field: "ShipCity",
-                                title: "Ship City"
+                                title: "Ship City",
+                                width: 150
                             }
                         ]
                     });

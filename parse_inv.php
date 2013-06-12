@@ -96,7 +96,7 @@ if($handle){
 			$gtin_matches++;
 
 			// Check if item is in a group, and update tables if true
-			$itemid = $gtin_assoc['itemid'];
+			$itemid = $gtin_assoc['id'];
 			$item_group_id = (checkItemsForGroups($itemid)) ? my_split($itemid) : '';
 			
 			// insert a new record in LOCAL_PRODUCT_LISTINGS
@@ -128,7 +128,7 @@ if($handle){
 			$mpn_matches++;
 
  			// Check if item is in a group, and update tables if true
-			$itemid = $mpn_assoc['itemid'];
+			$itemid = $mpn_assoc['id'];
 			$item_group_id = (checkItemsForGroups($itemid)) ? my_split($itemid) : '';
 			
 			// insert a new record in LOCAL_PRODUCT_LISTINGS

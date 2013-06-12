@@ -55,7 +55,7 @@ if($handle){
 		$price = $exploded_tab_array[8];
 		$availability = $exploded_tab_array[9];
 		$expiration_date = $exploded_tab_array[10];
-		$itemid = $exploded_tab_array[11];
+		$id = $exploded_tab_array[11];
 		$mpn = $exploded_tab_array[12];
 		$gtin = $exploded_tab_array[13];
 		$color = $exploded_tab_array[14];
@@ -80,7 +80,7 @@ if($handle){
 						$price,
 						$availability,
 						$expiration_date,
-						$itemid,
+						$id,
 						$mpn,
 						$gtin,
 						$color,

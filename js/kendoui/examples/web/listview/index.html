@@ -10,21 +10,29 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
     <div id="example" class="k-content">
 
-    <div id="listView"></div>
-
-    <div id="pager" class="k-pager-wrap">
+    <div class="demo-section">
+        <div id="listView"></div>
+        <div id="pager" class="k-pager-wrap"></div>
     </div>
 
     <script type="text/x-kendo-tmpl" id="template">
         <div class="product">
             <img src="../../content/web/foods/${ProductID}.jpg" alt="${ProductName} image" />
-            <h3>${ProductName}</h3>
-            <p>${kendo.toString(UnitPrice, "c")}</p>
+            <h3>#:ProductName#</h3>
+            <p>#:kendo.toString(UnitPrice, "c")#</p>
         </div>
     </script>
 
@@ -52,73 +60,66 @@
     </script>
 
     <style scoped>
+        .demo-section {
+            padding: 30px;
+            width: 577px;
+        }
         #listView {
-	    min-height: 610px;
-	}
-	
-	.product {
-	    float: left;
-	    position: relative;
-            width: 110px;
-            height: 160px;
-            margin: 10px;
-            padding: 7px 7px 0 7px;
-            -moz-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
-            -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
-	    background-color: rgba(255,255,255,0.8)
+            padding: 10px;
+            margin-bottom: -1px;
+            min-width: 555px;
+            min-height: 510px;
         }
-	
-        .product img {
-	    width: 110px;
-            height: 110px;
-        }
-	
-        .product h3 {
+        .product {
+            float: left;
+            position: relative;
+            width: 111px;
+            height: 170px;
             margin: 0;
             padding: 0;
-            line-height: 1.1em;
-	    font-size: .9em;
-	    font-weight: normal;
-            text-transform: uppercase;
-	    color: #777;
         }
-	
+        .product img {
+            width: 110px;
+            height: 110px;
+        }
+        .product h3 {
+            margin: 0;
+            padding: 3px 5px 0 0;
+            max-width: 96px;
+            overflow: hidden;
+            line-height: 1.1em;
+            font-size: .9em;
+            font-weight: normal;
+            text-transform: uppercase;
+            color: #999;
+        }
         .product p {
             visibility: hidden;
         }
-	
-	.product:hover p {
+        .product:hover p {
             visibility: visible;
-	    position: absolute;
-	    width: 100px;
-	    height: 34px;
-	    top: 77px;
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            top: 0;
             margin: 0;
-	    padding: 3px 5px;
-	    line-height: 34px;
-	    vertical-align: middle;
-	    text-align: center;
-	    color: #fff;
-	    background-color: rgba(0,0,0,0.65);
-	    transition: background .2s linear, color .2s linear;
-	    -moz-transition: background .2s linear, color .2s linear;
-	    -webkit-transition: background .2s linear, color .2s linear;
-	    -o-transition: background .2s linear, color .2s linear;
+            padding: 0;
+            line-height: 110px;
+            vertical-align: middle;
+            text-align: center;
+            color: #fff;
+            background-color: rgba(0,0,0,0.75);
+            transition: background .2s linear, color .2s linear;
+            -moz-transition: background .2s linear, color .2s linear;
+            -webkit-transition: background .2s linear, color .2s linear;
+            -o-transition: background .2s linear, color .2s linear;
         }
-	
         .k-listview:after, .product dl:after {
             content: ".";
             display: block;
             height: 0;
             clear: both;
             visibility: hidden;
-        }
-	
-        .k-listview {
-            border: 0;
-            padding: 0 0 20px 0;
-            min-width: 0;
         }
     </style>
 </div>

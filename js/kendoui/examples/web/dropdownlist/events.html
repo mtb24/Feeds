@@ -10,13 +10,27 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
     
         <div id="example" class="k-content">
-            <input id="input"/>
-
+            <div class="demo-section">
+                <h3 class="title">DropDownList</h3>
+                <input id="dropdownlist"/>
+            </div>
+            <div class="demo-section">
+                <h3 class="title">Console log</h3>
+                <div class="console"></div>
+            </div>
             <script>
                 $(document).ready(function() {
                     function onOpen() {
@@ -44,7 +58,7 @@
                         {text: "Item3", value:"3"}
                     ];
 
-                    $("#input").kendoDropDownList({
+                    $("#dropdownlist").kendoDropDownList({
                         dataTextField: "text",
                         dataValueField: "value",
                         dataSource: data,
@@ -54,9 +68,20 @@
                         open: onOpen
                     });
                 });
-            </script>
+            </script>            
+            <style scoped>
+                .demo-section {
+                    width: 500px;
+                    text-align: center;
+                }
+                .demo-section .k-dropdown {
+                    text-align: left;
+                }
+                .console {
+                    margin: 0;
+                }
+            </style>  
         </div>
-        <div class="console"></div>
 
 </body>
 </html>

@@ -10,18 +10,28 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
     
         <div id="example" class="k-content">
             <div id="to-do">
-                    <input id="datetimepicker" value="10/10/2011 12:00 AM" style="width:200px;" />
+                    <input id="datetimepicker" style="width:200px;" />
             </div>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 // create DateTimePicker from input HTML element
-                $("#datetimepicker").kendoDateTimePicker();
+                $("#datetimepicker").kendoDateTimePicker({
+                    value:new Date()
+                });
             });
         </script>
         <style scoped>

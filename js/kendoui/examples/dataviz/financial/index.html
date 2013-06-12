@@ -15,11 +15,12 @@
     <a class="offline-button" href="../index.html">Back</a>
     
         <div id="example" class="k-content">
-            <div id="stock-chart"></div>
+            <div class="chart-wrapper">
+                <div id="stock-chart"></div>
+            </div>
             <script>
                 function createChart() {
                     $("#stock-chart").kendoStockChart({
-                        theme: $(document).data("kendoSkin") || "default",
                         dataSource: {
                             transport: {
                                 read: {

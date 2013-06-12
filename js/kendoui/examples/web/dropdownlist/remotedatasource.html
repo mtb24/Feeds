@@ -10,40 +10,54 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
     
         <div id="example" class="k-content">
             
-            <div class="demo-section" style="width: 250px; text-align: center;">
-                <label for="titles">Select Title:</label> <input id="titles"/>
+            <div class="demo-section">
+                <h2>Products</h2>
+                <input id="products" style="width: 250px" />
             </div>
 
             <script>
                 $(document).ready(function() {
-                    $("#titles").kendoDropDownList({
-                        dataTextField: "Name",
-                        dataValueField: "Id",
+                    $("#products").kendoDropDownList({
+                        dataTextField: "ProductName",
+                        dataValueField: "ProductID",
                         dataSource: {
-                            type: "odata",
-                            serverFiltering: true,
-                            filter: [{
-                                field: "Name",
-                                operator: "contains",
-                                value: "Star Wars"
-                            },{
-                                field: "BoxArt.SmallUrl",
-                                operator: "neq",
-                                value: null
-                            }],
                             transport: {
-                                read: "http://odata.netflix.com/Catalog/Titles"
+                                read: {
+                                    dataType: "jsonp",
+                                    url: "http://demos.kendoui.com/service/Products",
+                                }
                             }
                         }
                     });
                 });
             </script>
+            
+            <style scoped>
+                .demo-section {
+                    width: 250px;
+                    margin: 35px auto 50px;
+                    padding: 30px;
+                }
+                .demo-section h2 {
+                    text-transform: uppercase;
+                    font-size: 1.2em;
+                    margin-bottom: 10px;
+                }
+            </style>
         </div>
 </body>
 </html>

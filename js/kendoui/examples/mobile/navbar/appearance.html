@@ -80,8 +80,21 @@
 	background-color: #111;
 }
 
+/* iOS pager */
+.km-ios #dark-theme .km-pages .km-current-page {
+	background: #ff009c;
+}
+
 #light-theme .km-content, #light-theme .km-navbar {
 	background-color: #ddd;
+}
+
+/* WP8 pager */
+.km-wp-dark #light-theme .km-content, .km-wp-dark  #light-theme .km-navbar {
+	background-color: #fff;
+}
+.km-wp-dark #light-theme .km-pages > li {
+	background-color: #000;
 }
 
 #light-theme .km-view-title {
@@ -98,9 +111,9 @@
 
 #dark-theme .photo,
 #light-theme .photo {
-    width: 277px;
+    width: 15em;
     margin: 7em 20px 7px;
-    height: 220px;
+    height: 15em;
     display: inline-block;
     -webkit-background-size: auto 100%;
     -webkit-transform: translatez(0);

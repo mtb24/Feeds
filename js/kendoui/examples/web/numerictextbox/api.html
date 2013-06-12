@@ -10,12 +10,37 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
     
-        <div id="example" class="k-content">
-            <input id="numerictextbox" />
+        <a class="offline-button" href="../index.html">Back</a>
+    
+    
+        <div id="example" class="k-content"> 
+           <div class="configuration k-widget k-header" style="width: 220px">
+                <span class="configHead">API Functions</span>
+                <ul class="options">
+                    <li>
+                       <button id="get" class="k-button">Get value</button> or <button id="focus" class="k-button">Focus</button>
+                   </li>
+                   <li>
+                       <input id="value" value="10" style="float:none" />
+                       <button id="set" class="k-button">Set value</button>
+                   </li>
+                    <li>
+                        <button id="enable" class="k-button">Enable</button> or <button id="disable" class="k-button">Disable</button> or <button id="readonly" class="k-button">Readonly</button>
+                    </li>
+                </ul>
+            </div>           
+            <div class="demo-section">
+                <input id="numerictextbox" />
+            </div>
 
             <script>
                 $(document).ready(function() {
@@ -35,6 +60,10 @@
                         numerictextbox.enable(false);
                     });
 
+                    $("#readonly").click(function() {
+                        numerictextbox.readonly();
+                    });
+
                     $("#focus").click(function() {
                         numerictextbox.focus();
                     });
@@ -49,22 +78,13 @@
                         alert(numerictextbox.value());
                     });
                 });
-           </script>
-            <div class="configuration k-widget k-header" style="width: 220px">
-                <span class="configHead">API Functions</span>
-                <ul class="options">
-                    <li>
-                       <button id="get" class="k-button">Get value</button> or <button id="focus" class="k-button">Focus</button>
-                   </li>
-                   <li>
-                       <input id="value" value="10" style="float:none" />
-                       <button id="set" class="k-button">Set value</button>
-                   </li>
-                    <li>
-                        <button id="enable" class="k-button">Enable</button> or <button id="disable" class="k-button">Disable</button>
-                    </li>
-                </ul>
-           </div>
+           </script>           
+            <style scoped>
+                .demo-section{
+                    width:150px;
+                    margin-right: 360px;
+                }
+            </style>
         </div>
 
 </body>

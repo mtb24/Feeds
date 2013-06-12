@@ -10,13 +10,23 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
-            <script src="../../content/shared/js/people.js"></script>
-
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
+            
         <div id="example" class="k-content">
-            <div id="grid"></div>
+            
+            <div class="demo-section">
+                <div id="grid"></div>
+            </div>
 
             <script>
                 function onChange(arg) {
@@ -31,35 +41,56 @@
                     kendoConsole.log("Grid data bound");
                 }
 
-                $(document).ready(function() {
+                function onDataBinding(arg) {
+                    kendoConsole.log("Grid data binding");
+                }
+
+                $(document).ready(function () {
                     $("#grid").kendoGrid({
                         dataSource: {
-                            data: createRandomData(50),
+                            transport: {
+                                read: {
+                                    url: "http://demos.kendoui.com/service/Products",
+                                    dataType: "jsonp"
+                                }
+                            },
                             pageSize: 5
                         },
                         change: onChange,
                         dataBound: onDataBound,
+                        dataBinding: onDataBinding,
                         selectable: "multiple cell",
                         pageable: true,
                         sortable: true,
                         scrollable: false,
                         columns: [
                             {
-                                field: "FirstName",
-                                title: "First Name"
+                                field: "ProductName",
+                                title: "Product Name"
                             },
                             {
-                                field: "LastName",
-                                title: "Last Name"
+                                field: "UnitPrice",
+                                title: "Unit Price",
+                                format: "{0:c}"
                             },
                             {
-                                field: "Age"
+                                field: "UnitsInStock",
+                                title: "Units In Stock"
                             }
                         ]
                     });
                 });
             </script>
+            <div class="demo-section">
+                <h3 class="title">Console log</h3>
+                <div class="console"></div>
+            </div>
+            <style scoped="scoped">
+                .demo-section {
+                    width: 600px;
+                }
+            </style>
         </div>
-        <div class="console"></div>
+        
 </body>
 </html>

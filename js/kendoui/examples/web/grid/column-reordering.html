@@ -10,11 +10,18 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
-            <script src="../../content/shared/js/people.js"></script>
-
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
+    
         <div id="example" class="k-content">
             <div id="grid"></div>
 
@@ -22,53 +29,60 @@
                 $(document).ready(function() {
                     $("#grid").kendoGrid({
                         dataSource: {
-                            data: createRandomData(50),
+                            type: "odata",
+                            transport: {
+                                read: "http://demos.kendoui.com/service/Northwind.svc/Orders"
+                            },
                             schema: {
                                 model: {
-                                    fields: {
-                                        FirstName: { type: "string" },
-                                        LastName: { type: "string" },
-                                        City: { type: "string" },
-                                        Title: { type: "string" },
-                                        BirthDate: { type: "date" },
-                                        Age: { type: "number" }
+                                    fields: {                         
+                                        OrderID: { type: "number" },           
+                                        ShipCountry: { type: "string" },
+                                        ShipCity: { type: "string" },
+                                        ShipName: { type: "string" },
+                                        OrderDate: { type: "date" },
+                                        ShippedDate: {type: "date" }
                                     }
                                 }
                             },
-                            pageSize: 10
+                            pageSize: 15
                         },
-                        height: 350,
+                        height: 430,
                         sortable: true,
                         reorderable: true,
                         resizable: true,
                         pageable: true,
                         columns: [
                             {
-                                field: "FirstName",
-                                title: "First Name",
-                                width: 100
+                                field: "OrderDate",
+                                title: "Order Date",
+                                width: 110,
+                                format: "{0:MM/dd/yyyy}"
                             },
                             {
-                                field: "LastName",
-                                title: "Last Name",
-                                width: 100
+                                field: "ShipCountry",
+                                title: "Ship Country",
+                                width: 110
                             },
                             {
-                                field: "City",
-                                width: 100
+                                field: "ShipCity",
+                                title: "Ship City",
+                                width: 110
                             },
                             {
-                                field: "Title",
-                                width: 100
+                                field: "ShipName",
+                                title: "Ship Name",
+                                width: 200
                             },
                             {
-                                field: "BirthDate",
-                                title: "Birth Date",
-                                template: '#= kendo.toString(BirthDate,"MM/dd/yyyy") #'
+                                field: "ShippedDate",
+                                title: "Shipped Date",
+                                format: "{0:MM/dd/yyyy}"
                             },
                             {
-                                field: "Age",
-                                width: 50
+                                field: "OrderID",
+                                title: "ID",
+                                width: 60
                             }
                         ]
                     });

@@ -10,9 +10,17 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
             
         <div id="example" class="k-content">
             <div id="grid"></div>
@@ -35,21 +43,29 @@
                                     }
                                 }
                             },
-                            pageSize: 10,
+                            pageSize: 30,
                             serverPaging: true,
                             serverFiltering: true,
                             serverSorting: true
                         },
-                        height: 250,
+                        height: 430,
                         sortable: true,
                         filterable: true,
                         columnMenu: true,
                         pageable: true,
-                        columns: [
-                            "OrderID",
-                            "ShipCountry",
-                            "ShipName",
-                            {
+                        columns: [ {
+                                field: "OrderID",
+                                title: "Order ID",
+                                width: 100
+                            }, {
+                                field: "ShipCountry",
+                                title: "Ship Country",
+                                width: 130
+                            }, {
+                                field: "ShipName",
+                                title: "Ship Name",
+                                width: 200
+                            },  {
                                 field: "ShipAddress",
                                 filterable: false
                             }

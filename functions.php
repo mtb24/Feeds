@@ -123,7 +123,7 @@ function insertNewOnlineListing(
 				$price, 
 				$availability, 
 				$expiration_date, 
-				$itemid, 
+				$id, 
 				$mpn, 
 				$gtin, 					
 				$color, 
@@ -146,7 +146,7 @@ function insertNewOnlineListing(
 	$price = mysql_real_escape_string($price);
 	$availability = mysql_real_escape_string($availability);
 	$expiration_date = mysql_real_escape_string($expiration_date);
-	$itemid = mysql_real_escape_string($itemid);
+	$id = mysql_real_escape_string($id);
 	$mpn = mysql_real_escape_string($mpn);
 	$gtin = mysql_real_escape_string($gtin);
 	$color = mysql_real_escape_string($color);
@@ -170,7 +170,7 @@ function insertNewOnlineListing(
 						Price,
 						Availability,
 						ExpirationDate,
-						itemid,
+						id,
 						MPN,
 						GTIN,
 						Color,
@@ -192,7 +192,7 @@ function insertNewOnlineListing(
 					       '$price',
 					       '$availability',
 					       '$expiration_date',
-					       '$itemid',
+					       '$id',
 					       '$mpn',
 					       '$gtin',
 					       '$color',
@@ -201,9 +201,6 @@ function insertNewOnlineListing(
 					       '$shipping',
 					       '$gender',
 					       '$age_group')";
-
-	//echo "<br><br>$query<br><br>";
-
 
 	$results = mysql_query($query);
 	//check for general error
@@ -299,9 +296,9 @@ function insertNewPriceQuantity($storeid,$itemid,$item_group_id,$local_quantity,
 	$store_availability = mysql_real_escape_string($store_availability);
 
 	//here's our query
-	$query = "insert into PRICE_QUANTITY (  
-		                StoreID,
-	                    ProductID,
+	$query = "insert into PRICE_QUANTITY (
+	                                        StoreID,
+						itemid,
 						item_group_id,
 						Quantity,
 						PriceOverride,
@@ -320,7 +317,7 @@ function insertNewPriceQuantity($storeid,$itemid,$item_group_id,$local_quantity,
 		$error_message = "Im sorry, there was a database insert error";
 		//errorHandler($error_message);
 	}
-	//echo "$query<br><br>";
+
 	return mysql_insert_id();
 }
 

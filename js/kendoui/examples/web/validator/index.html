@@ -10,9 +10,17 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
     
         <div id="example" class="k-content">
         <div id="tickets">
@@ -27,8 +35,19 @@
                     <input type="search" id="search" name="search" required validationMessage="Please select movie"/><span class="k-invalid-msg" data-for="search"></span>
                 </li>
                 <li>
+                    <label for="time">Start time</label>
+                    <select name="time" id="time" required data-required-msg="Select start time">
+                        <option>14:00</option>
+                        <option>15:30</option>
+                        <option>17:00</option>
+                        <option>20:15</option>
+                    </select>
+                    <span class="k-invalid-msg" data-for="time"></span>
+                </li>
+                <li>
                     <label for="amount">Amount</label>
-                    <input id="amount" name="Amount" type="number" min="1" max="10" value="1" class="k-textbox k-input" required data-max-msg="Enter value between 1 and 10" /><span class="k-invalid-msg" data-for="amount"></span>
+                    <input id="amount" name="Amount" type="text" min="1" max="10" value="1" required data-max-msg="Enter value between 1 and 10" />
+                    <span class="k-invalid-msg" data-for="Amount"></span>
                 </li>
                 <li>
                     <label for="email" class="required">Email</label>
@@ -39,10 +58,9 @@
                     <input type="tel" id="tel" name="tel" class="k-textbox" pattern="\d{10}" placeholder="Please enter a ten digit phone number" required
                         validationMessage="Please enter a ten digit phone number"/>
                 </li>
-                    <li  class="accept">
+                <li  class="accept">
                     <input type="checkbox" name="Accept" required validationMessage="Acceptance is required" /> I accept the terms and condition of service
                 </li>
-
                 <li  class="accept">
                     <button class="k-button" type="submit">Submit</button>
                 </li>
@@ -126,14 +144,24 @@
                         separator: ", "
                     });
 
+                    $("#time").kendoDropDownList({
+                        optionLabel: "--Start time--"
+                    });
+
+                    $("#amount").kendoNumericTextBox();
+
                     var validator = $("#tickets").kendoValidator().data("kendoValidator"),
                     status = $(".status");
 
                     $("button").click(function() {
                         if (validator.validate()) {
-                            status.text("Hooray! Your tickets has been booked!").addClass("valid");
-                            } else {
-                            status.text("Oops! There is invalid data in the form.").addClass("invalid");
+                            status.text("Hooray! Your tickets has been booked!")
+                                .removeClass("invalid")
+                                .addClass("valid");
+                        } else {
+                            status.text("Oops! There is invalid data in the form.")
+                                .removeClass("valid")
+                                .addClass("invalid");
                         }
                     });
                 });

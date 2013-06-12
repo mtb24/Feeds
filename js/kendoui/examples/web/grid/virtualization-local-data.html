@@ -10,9 +10,17 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
             <script src="../../content/shared/js/people.js"></script>
 
         <div id="example" class="k-content">
@@ -32,14 +40,15 @@
                                 data: data,
                                 pageSize: 50
                             },
-                            height: 280,
+                            height: 430,
                             scrollable: {
                                 virtual: true
                             },
-                            columns: [ "Id",
-                                { field:"FirstName", title: "First Name" },
-                                { field:"LastName", title: "Last Name" },
-                                "City", "Title"
+                            columns: [ { field: "Id", title: "ID", width: "70px" },
+                                { field: "FirstName", title: "First Name", width: "130px" },
+                                { field: "LastName", title: "Last Name", width: "130px" },
+                                { field: "City", title: "City", width: "130px" },
+                                "Title"
                             ]
                         });
                     });

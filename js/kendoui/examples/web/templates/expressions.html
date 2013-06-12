@@ -10,9 +10,17 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
             <div id="example" class="k-content">
             <h3>Basic template</h3>
             <div class="code-sample">
@@ -122,11 +130,18 @@ $("#encoding").html(encodingTemplate(encodingData));</pre>
                     float:left;
                     margin-bottom: 20px;
                 }
+                #example .code-sample h4 {
+                    width: auto;
+                }
 
                 #example .output {
                     width: 24%;
-                    margin-left: 4%;
+                    margin-left: 0;
                     float:left;
+                }
+                #example pre.prettyprint {
+                        height: auto;
+                        min-height: 120px;
                 }
             </style>
         </div>

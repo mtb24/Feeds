@@ -10,9 +10,17 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
             <div id="example" class="k-content">
             <div id="window">
                 <p>Alvar Aalto is one of the greatest names in modern architecture and design. Glassblowers at the iittala factory still meticulously handcraft the legendary vases that are variations on one theme, fluid organic shapes that let the end user decide the use. Interpretations of the shape in new colors and materials add to the growing Alvar Aalto Collection that remains true to his original design.</p>
@@ -119,53 +127,47 @@
             </div>
 
             <script>
-                $(document).ready(function() {
-                    var window = $("#window"),
-                    undo = $("#undo")
+                function onClose() {
+                    $("#undo").show();
+                }
+
+                $("#undo")
                     .bind("click", function() {
-                        window.data("kendoWindow").open();
-                        undo.hide();
+                        $("#window").data("kendoWindow").open();
+                        $("#undo").hide();
                     });
 
-                    var onClose = function() {
-                        undo.show();
+                // focus the widget
+                $(document).on("keydown.examples", function(e) {
+                    if (e.altKey && e.keyCode === 87 /* w */) {
+                        $("#window").focus();
                     }
-
-                    if (!window.data("kendoWindow")) {
-                        window.kendoWindow({
-                            width: "600px",
-                            title: "About Alvar Aalto",
-                            close: onClose
-                        });
-                    }
-
-                    //focus the widget
-                    $(document).on("keydown.examples", function(e) {
-                        if (e.altKey && e.keyCode === 87 /* w */) {
-                            $("#window").focus();
-                        }
-                    });
                 });
+
+                if (!$("#window").data("kendoWindow")) {
+                    $("#window").kendoWindow({
+                        width: "600px",
+                        title: "About Alvar Aalto",
+                        close: onClose
+                    });
+                }
+
             </script>
 
-            <style scoped="scoped">
-                #example
-                {
+            <style scoped>
+                #example {
                     min-height:500px;
                 }
 
-                #undo
-                {
+                #undo {
                     position: absolute;
                 }
 
-                .keyboard-nav
-                {
+                .keyboard-nav {
                     margin-top: 350px;
                 }
 
-                .button-container
-                {
+                .button-container {
                     position: absolute;
                 }
             </style>

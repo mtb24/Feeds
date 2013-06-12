@@ -10,9 +10,17 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
     <div id="example" class="k-content">
     <div class="configuration k-widget k-header" style="float:none;max-width:none;margin:0 0 2em;">
         <span class="infoHead">Information</span>
@@ -80,36 +88,6 @@
                     template: $("#backgroundColor-template").html()
                 },
                 {
-                    name: "viewHtml",
-                    tooltip: "View HTML",
-                    exec: function(e) {
-                        var editor = $(this).data("kendoEditor");
-
-                        var dialog = $($("#viewHtml-template").html())
-                            .find("textarea").val(editor.value()).end()
-                            .find(".viewHtml-update")
-                                .click(function() {
-                                    editor.value(dialog.element.find("textarea").val());
-                                    dialog.close();
-                                })
-                            .end()
-                            .find(".viewHtml-cancel")
-                                .click(function() {
-                                    dialog.close();
-                                })
-                            .end()
-                            .kendoWindow({
-                                modal: true,
-                                title: "View HTML",
-                                deactivate: function() {
-                                    dialog.destroy();
-                                }
-                            }).data("kendoWindow");
-
-                        dialog.center().open();
-                    }
-                },
-                {
                     name: "custom",
                     tooltip: "Insert a horizontal rule",
                     exec: function(e) {
@@ -128,11 +106,6 @@
 
     </script>
 
-    <style scoped>
-        .k-viewHtml {
-            background: transparent url(../../content/web/editor/insert-html-icon.png) no-repeat 50% 50%;
-        }
-    </style>
 </div>
 
 </body>

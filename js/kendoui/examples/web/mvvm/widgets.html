@@ -10,9 +10,17 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
     <div id="example" class="k-content">
     <table class="metrotable">
         <tbody>
@@ -25,13 +33,14 @@
                 <input data-role="autocomplete" data-text-field="name" data-bind="source: colors, value: autoCompleteValue"/>
                 <h4>AutoComplete</h4>
             </td>
-            <td rowspan="10" style="background-color: #efefef; padding: 10px;">
+            <td rowspan="11" style="background-color: #efefef; padding: 10px;">
 <pre>
 {
     autoCompleteValue: <span data-bind="text: displayAutoCompleteValue"></span>,
     comboBoxValue: <span data-bind="text: displayComboBoxValue"></span>,
     datePickerValue: <span data-bind="text: displayDatePickerValue"></span>,
     dropDownListValue: <span data-bind="text: displayDropDownListValue"></span>,
+    multiSelectValue: <span data-bind="text: displayMultiSelectValue"></span>,
     gridSource: [
 <span data-bind="text: displayGridSource"></span>    ],
     numericTextBoxValue: <span data-bind="text: displayNumericTextBoxValue"></span>,
@@ -59,6 +68,12 @@
             <td>
                 <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-bind="source: colors, value: dropDownListValue"></select>
                 <h4>DropDownList </h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <select multiple="multiple" data-role="multiselect" data-text-field="name" data-value-field="value" data-bind="source: colors, value: multiSelectValue"></select>
+                <h4>MultiSelect </h4>
             </td>
         </tr>
         <tr>
@@ -108,6 +123,15 @@
             <td>
                 <h4>TreeView</h4>
                 <div data-role="treeview" data-drag-and-drop="true" data-bind="source: treeviewSource"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Splitter</h4>
+                <div data-role="splitter" data-panes="[{size:'30%', collapsible:true},{size:'70%'}]">
+                    <div>Pane 1</div>
+                    <div>Pane 2</div>
+                </div>
             </td>
         </tr>
         </tbody>
@@ -188,6 +212,11 @@
                 displayDropDownListValue: function() {
                     var dropDownListValue = this.get("dropDownListValue");
                     return kendo.stringify(dropDownListValue);
+                },
+                multiSelectValue: [],
+                displayMultiSelectValue: function() {
+                    var multiSelectValue = this.get("multiSelectValue");
+                    return kendo.stringify(multiSelectValue);
                 },
                 gridSource: [
                     { Name: "Socks", Price: 18.00, UnitsInStock: 39 },
@@ -347,6 +376,11 @@ var viewModel = kendo.observable({
     displayDropDownListValue: function() {
         var dropDownListValue = this.get("dropDownListValue");
         return kendo.stringify(dropDownListValue);
+    },
+    multiSelectValue: [],
+    displayMultiSelectValue: function() {
+        var multiSelectValue = this.get("multiSelectValue");
+        return kendo.stringify(multiSelectValue);
     },
     gridSource: [
         { Name: "Chai", Price: 18.00, UnitsInStock: 39 },

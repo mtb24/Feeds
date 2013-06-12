@@ -84,7 +84,7 @@ while( $row = mysql_fetch_assoc($results) ){
 	$size = stripslashes($row['Size']);
 	
 	// get fields from SE file
-	$sql = "select Description,ProductType,GoogleProductCategory from ONLINE_LISTINGS where itemid = '$webitemid' limit 1";
+	$sql = "select Description,ProductType,GoogleProductCategory from ONLINE_LISTINGS where id = '$webitemid' limit 1";
 	$ext_results = mysql_query($sql);
 	$ext_row = mysql_fetch_assoc($ext_results);
 	$description = $ext_row['Description'];

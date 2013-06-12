@@ -10,19 +10,27 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/kendo.web.min.js"></script>
     <script src="../../content/shared/js/console.js"></script>
+    
+    
+
+    <script>
+        
+    </script>
 </head>
 <body>
-    <a class="offline-button" href="../index.html">Back</a>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
     
         <div id="example" class="k-content">
 
             <div class="demo-section">
-                <h3>T-shirt Size</h3>
-                <select id="select" placeholder="Select size..." style="width: 200px" accesskey="w">
+                <h2>T-shirt Size</h2>
+                <select id="size" placeholder="Select size..." style="width: 250px" accesskey="w">
                     <option>X-Small</option>
                     <option>Small</option>
                     <option>Medium</option>
-                    <option>Large</option>
+                    <option selected>Large</option>
                     <option>X-Large</option>
                     <option>2X-Large</option>
                 </select>
@@ -96,15 +104,20 @@
 
             <script>
                 $(document).ready(function () {
-                    $("#select").kendoComboBox();
+                    $("#size").kendoComboBox();
                 });
             </script>
 
             <style scoped>
-                div.demo-section
-                {
-                    width: 204px;
-                    margin: 0px auto 25px auto;
+                .demo-section {
+                    width: 250px;
+                    margin: 35px auto 50px;
+                    padding: 30px;
+                }
+                .demo-section h2 {
+                    text-transform: uppercase;
+                    font-size: 1.2em;
+                    margin-bottom: 10px;
                 }
             </style>
         </div>

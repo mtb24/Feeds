@@ -61,6 +61,7 @@
                 <dd>#: UnitPrice #</dd>
             </dl>
         </script>
+
         <div data-role="view" data-title="Orders" id="orders" data-show="displayOrder">
             <div id="product-details">
             </div>
@@ -70,6 +71,7 @@
             <div data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
+                    <a data-role="button" href="#index" data-align="right" data-target="_top">Index</a>
                 </div>
             </div>
         </div>
@@ -135,15 +137,9 @@
 
     function toggleBackButton(e) {
         if (e.view.id === "#side-root") {
-            e.view.element
-                    .find("[data-role=backbutton]")
-                    .css("visibility", "")
-                    .attr("data-target", "_top");
+            e.view.element.find("[data-role=backbutton]").css("visibility", "");
         } else {
-            e.view.element
-                    .find("[data-role=backbutton]")
-                    .css("visibility", "visible")
-                    .removeAttr("data-target");
+            e.view.element.find("[data-role=backbutton]").css("visibility", "visible");
         }
     }
 </script>
@@ -161,20 +157,20 @@
        font-size: .7em;
        font-weight: normal;
     }
-    
+
     #side-inbox .km-content h3 {
        margin-left: 0;
     }
     #main-pane .km-content{
     	padding: 30px;
     }
-    
+
     #main-pane dl {
     	float: left;
     	margin: 0;
     	padding: 0 0 20px 0;
     }
-    
+
     #main-pane dl:after {
         visibility: hidden;
         display: block;
@@ -183,19 +179,19 @@
         clear: both;
         height: 0;
     }
-    
+
     #main-pane dt, #main-pane dd {
     	display: block;
     	float: left;
     	margin: 0;
     	padding: 0;
     }
-    
+
     #main-pane dt {
     	clear: left;
     	text-align: right;
     	padding: 0 10px;
-    } 
+    }
 </style>
 
 

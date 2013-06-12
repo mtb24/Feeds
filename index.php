@@ -66,7 +66,7 @@ require_once('functions.php');
         $("#chart").kendoChart({
             theme: $(document).data("kendoSkin") || "default",
             chartArea: {
-                width: 1000
+                width: 1400
             },
             title: {
                 text: 'Mike\'s Bikes Feed Statistics'

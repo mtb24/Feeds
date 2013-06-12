@@ -42,7 +42,7 @@ $data_string = 	'link' . "\t" .
 		'price' . "\t" . 
 		'availability' . "\t" . 
 		'expiration date' . "\t" .
-		'itemid' . "\t" .
+		'id' . "\t" .
 		'mpn' . "\t" . 
 		'gtin' . "\t" . 
 		'color' . "\t" . 
@@ -83,7 +83,7 @@ while( $row = mysql_fetch_assoc($results) ){
 	$price = stripslashes($row['Price']);
 	$availability = stripslashes($row['Availability']);
 	$expiration_date = stripslashes($row['ExpirationDate']);
-	$item_id = stripslashes($row['itemid']);
+	$item_id = stripslashes($row['id']);
 	$mpn = stripslashes($row['MPN']);
 	$gtin = stripslashes($row['GTIN']);
 	$color = stripslashes($row['Color']);
