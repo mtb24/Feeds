@@ -18,7 +18,7 @@ ini_set('display_errors', 'On');
 
 //include our functions file
 require_once('config.php');
-require_once('mb_feeds_functions.php');
+require_once('functions.php');
 
 
 //name of the output file

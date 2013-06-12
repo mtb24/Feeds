@@ -1,6 +1,6 @@
 <?php 
 //////////////////////////////
-//this is parse_googlebase.php
+//this is parse_raleigh.php
 
 //////////////////////////////
 
@@ -12,7 +12,7 @@ ini_set('display_errors', 'On');
 require_once('functions.php');
 
 //name of the text datafile
-$datafile = $feedSettings[0]['file'];
+$datafile = $feedSettings[9]['file'];
 
 
 
@@ -22,11 +22,7 @@ $handle = fopen($datafile, "r");
 //////////////////////////////
 if($handle){
 
-	//empty the ONLINE_LISTINGS table
-	emptyTable('ONLINE_LISTINGS'); 
-
 	$count = 0;
-	$shipping_deal_count = 0;
 
     ///////////////////////
     // loop through line by line, and do any text processing required
@@ -37,9 +33,6 @@ if($handle){
 		//var_dump($exploded_tab_array);
 		//echo '</pre><br>';
 
-		$shipping = "";
-		$gender = '';
-		$age_group = '';
 
 		//assign some reference variables
 		$link = $exploded_tab_array[0];
@@ -51,7 +44,7 @@ if($handle){
 		$description = str_replace(',','',$description);
 		$image_link = $exploded_tab_array[5];
 		$product_type = $exploded_tab_array[6];
-		$google_product_category = $exploded_tab_array[7];
+		$google_product_category = $exploded_tab_array[7];  //str_replace($SE_categories, $Google_categories, $product_type);
 		$price = $exploded_tab_array[8];
 		$availability = $exploded_tab_array[9];
 		$expiration_date = $exploded_tab_array[10];
@@ -61,34 +54,17 @@ if($handle){
 		$color = $exploded_tab_array[14];
 		$size = $exploded_tab_array[15];
 		$shipping_weight = $exploded_tab_array[16];
-		(in_array($mpn, $freeShippingByMPN)) ? $shipping = 'US:::0.00 USD' : $shipping = '';
+		$shipping = '';
+		$gender = $exploded_tab_array[17];
+		$age_group = $exploded_tab_array[18];
+
 
 		///////////////
 		//hack so we don't insert the first line
 		if($count > 0){
 			
 			//call our function to add a new Item and get back the InsertID
-			$item_id = insertNewOnlineListing(
-						$link,
-						$condition,
-						$brand,
-						$title,
-						$description,
-						$image_link,
-						$product_type,
-						$google_product_category,
-						$price,
-						$availability,
-						$expiration_date,
-						$itemid,
-						$mpn,
-						$gtin,
-						$color,
-						$size,
-						$shipping_weight,
-						$shipping,
-						$gender,
-						$age_group);
+			$item_id = insertNewOnlineListing($link, $condition, $brand, $title, $description, $image_link, $product_type, $google_product_category, $price, $availability, $expiration_date, $itemid, $mpn, $gtin, $color, $size, $shipping_weight, $shipping, $gender, $age_group);
 		}
 
 		//incremement the counter
@@ -104,8 +80,8 @@ if($handle){
     fclose($handle);
     
     // store item count
-    storeItemCount('SE', $count);
+    //storeItemCount('SE', $count); // DO NOT STORE
 }
 //all done!
-echo '<br />Finished processing SE file! - '.$count.' items<br /><br />';
+echo '<br />Finished processing Raleigh Products file! - '.$count.' items<br /><br />';
 ?>

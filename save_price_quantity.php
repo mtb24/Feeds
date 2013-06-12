@@ -12,7 +12,7 @@ ini_set('display_errors', 'On');
 
 //include our functions file
 require_once('config.php');
-require_once('mb_feeds_functions.php');
+require_once('functions.php');
 
 
 //name of the output file
@@ -53,9 +53,8 @@ if(!$results){
 while( $row = mysql_fetch_assoc($results) ){
 
 	//get the values we need
-	$store_product_id = stripslashes($row['StoreProductID']);
 	$store_id = stripslashes($row['StoreID']);
-	$product_id = stripslashes($row['ProductID']);
+	$itemid = stripslashes($row['itemid']);
 	$item_group_id = stripcslashes($row['item_group_id']);
 	$quantity = stripslashes($row['Quantity']);
 	$price = stripslashes($row['PriceOverride']);
@@ -64,7 +63,7 @@ while( $row = mysql_fetch_assoc($results) ){
 	//concat the data onto our string
 	//using tabs as delimiters
 	$data_string .= $store_id . "\t" . 
-			$product_id . "\t" .
+			$itemid . "\t" .
 			$item_group_id . "\t" .
 			$quantity . "\t" . 
 			"USD $price" . "\t" . 

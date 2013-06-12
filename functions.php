@@ -1,7 +1,7 @@
 <?php
 
 /////////////////////////////////////////////
-//this is mb_feeds_functions.php
+//this is functions.php
 //by Ken Downey <ken.downey@mikesbikes.com>
 /////////////////////////////////////////////
 
@@ -123,7 +123,7 @@ function insertNewOnlineListing(
 				$price, 
 				$availability, 
 				$expiration_date, 
-				$id, 
+				$itemid, 
 				$mpn, 
 				$gtin, 					
 				$color, 
@@ -146,7 +146,7 @@ function insertNewOnlineListing(
 	$price = mysql_real_escape_string($price);
 	$availability = mysql_real_escape_string($availability);
 	$expiration_date = mysql_real_escape_string($expiration_date);
-	$id = mysql_real_escape_string($id);
+	$itemid = mysql_real_escape_string($itemid);
 	$mpn = mysql_real_escape_string($mpn);
 	$gtin = mysql_real_escape_string($gtin);
 	$color = mysql_real_escape_string($color);
@@ -160,7 +160,7 @@ function insertNewOnlineListing(
 	//here's our query
 	$query = "insert into ONLINE_LISTINGS ( 
 						Link,
-                        ItemCondition,
+                                                ItemCondition,
 						Brand,
 						Title,
 						Description,
@@ -170,7 +170,7 @@ function insertNewOnlineListing(
 						Price,
 						Availability,
 						ExpirationDate,
-						OldID,
+						itemid,
 						MPN,
 						GTIN,
 						Color,
@@ -192,7 +192,7 @@ function insertNewOnlineListing(
 					       '$price',
 					       '$availability',
 					       '$expiration_date',
-					       '$id',
+					       '$itemid',
 					       '$mpn',
 					       '$gtin',
 					       '$color',
@@ -208,8 +208,7 @@ function insertNewOnlineListing(
 	$results = mysql_query($query);
 	//check for general error
 	if(!$results){
-		$error_message = "Im sorry, there was a database insert error. 379";
-		//errorHandler($error_message);
+		$error_message = "Im sorry, there was a database error";
 	}
 	
 	return mysql_insert_id();
@@ -217,7 +216,8 @@ function insertNewOnlineListing(
 
 //function to insert a new record in LOCAL_PRODUCT_LISTINGS
 function insertNewLocalProductListing(
-				    $title,
+				        $itemid,
+					$title,
 					$webitemid,
 					$item_group_id,
 					$gtin, 
@@ -232,6 +232,7 @@ function insertNewLocalProductListing(
 {
 	
 	//escape the values for database insertion
+	$itemid = mysql_real_escape_string($itemid);
 	$title = mysql_real_escape_string($title);
 	$webitemid = mysql_real_escape_string($webitemid);
 	$item_group_id = mysql_real_escape_string($item_group_id);
@@ -247,7 +248,8 @@ function insertNewLocalProductListing(
 
 	//here's our query
 	$query = "insert into LOCAL_PRODUCT_LISTINGS (
-	                        Title,
+	                                                itemid,
+							Title,
 							webitemid,
 							item_group_id,
 							GTIN,
@@ -261,7 +263,9 @@ function insertNewLocalProductListing(
 							Color)
 						values 
 
-							('$title',
+							(
+							'$itemid',
+							'$title',
 							'$webitemid',
 							'$item_group_id',
 							'$gtin',
@@ -286,7 +290,7 @@ function insertNewLocalProductListing(
 
 
 //function to insert a new record in PRICE_QUANTITY
-function insertNewPriceQuantity($storeid,$productid,$item_group_id,$local_quantity,$reg_price,$store_availability) {
+function insertNewPriceQuantity($storeid,$itemid,$item_group_id,$local_quantity,$reg_price,$store_availability) {
 	
 	//escape the values for database insertion
 	$item_group_id = mysql_real_escape_string($item_group_id);
@@ -304,7 +308,7 @@ function insertNewPriceQuantity($storeid,$productid,$item_group_id,$local_quanti
 						Availability)
 					values 
 						('$storeid',
-						 '$productid',
+						 '$itemid',
 						 '$item_group_id',
 						 '$local_quantity',
 						 '$reg_price',
@@ -332,7 +336,7 @@ function getItemAssocByMPN($mpn){
 	$results = mysql_query($query);
 	//check for general error
 	if(!$results){
-		$error_message = "Im sorry, there was a database select error. 477";
+		$error_message = "Im sorry, there was a database error";
 		errorHandler($error_message);
 	}
 	
@@ -661,7 +665,7 @@ function my_split($string)
 function checkItemsForGroups($checkID)
 {
 	// query to see if checkID exists more than once
-	$query = "SELECT COUNT(*)  FROM `ONLINE_LISTINGS` WHERE `OldID` LIKE '$checkID-%'";
+	$query = "SELECT COUNT(*)  FROM `ONLINE_LISTINGS` WHERE `itemid` LIKE '$checkID-%'";
 	$number = mysql_query($query);
 	return ($number > 1) ? true : false;
 }

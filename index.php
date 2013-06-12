@@ -1,5 +1,5 @@
 <?php
-require_once('mb_feeds_functions.php');
+require_once('functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,8 +130,6 @@ require_once('mb_feeds_functions.php');
                 width: 128
             };
             if(!testing){$this.spinner(opts);}
-
-            if (!testing) {
                 /* empty the results divs */
                 $("div#totals").html('');
                 $("div#messages").html('');
@@ -151,65 +149,76 @@ require_once('mb_feeds_functions.php');
                             success: function(response) {
      
                                 $("div#totals").html( $("div#totals").html() + response );
-     
-                                 // Process RPRO's file //
-                                 $.ajax({
-                                         type: "POST",
-                                         url: "parse_inv.php",
-                                         success: function(response) {
-     
-                                             $("div#totals").html( $("div#totals").html() + response );
-     
-                                             // output and upload google-online file //
-                                             $.ajax({
-                                                     type: "POST",
-                                                     url: "save_online_listings.php",
-                                                     success: function(response) {
-     
-                                                         $("div#messages").html( $("div#messages").html() + response );
-     
-                                                         // output and upload google-local file //
-                                                         $.ajax({
-                                                                 type: "POST",
-                                                                 url: "save_localproduct_listings.php",
-                                                                 success: function(response) {
-     
-                                                                     $("div#messages").html( $("div#messages").html() + response );
-     
-                                                                     // output and upload google-inventory file //
-                                                                     $.ajax({
-                                                                             type: "POST",
-                                                                             url: "save_price_quantity.php",
-                                                                             success: function(response) {
-     
-                                                                                 $("div#messages").html( $("div#messages").html() + response );
-     
-                                                                                 // output and upload qBike file //
-                                                                                 $.ajax({
-                                                                                         type: "POST",
-                                                                                         url: "save_qbike_listings.php",
-                                                                                         success: function(response) {
-                                                                                             $this.spinner('remove');
-                                                                                             $("div#messages").html( $("div#messages").html() + response );
-                                                                                             
-                                                                                             // show chart
-                                                                                             createChart();
-                                                                                         }
-                                                                                 });
-                                                                             }
-                                                                     });
-                                                                 }
-                                                         });
-                                                     }
-                                             });
-                                         }
-                                 });
+
+                                // Process Raleigh file //
+                                $.ajax({
+                                     type: "POST",
+                                     url: "parse_raleigh.php",
+                                     success: function(response) {
+              
+                                         $("div#totals").html( $("div#totals").html() + response );
+                                         
+                                          // Process RPRO's file //
+                                          $.ajax({
+                                                  type: "POST",
+                                                  url: "parse_inv.php",
+                                                  success: function(response) {
+              
+                                                      $("div#totals").html( $("div#totals").html() + response );
+if (!testing) {
+                                                      // output and upload google-online file //
+                                                      $.ajax({
+                                                              type: "POST",
+                                                              url: "save_online_listings.php",
+                                                              success: function(response) {
+              
+                                                                  $("div#messages").html( $("div#messages").html() + response );
+              
+                                                                  
+                                                                    // output and upload google-local file //
+                                                                    $.ajax({
+                                                                            type: "POST",
+                                                                            url: "save_localproduct_listings.php",
+                                                                            success: function(response) {
+                
+                                                                                $("div#messages").html( $("div#messages").html() + response );
+                
+                                                                                // output and upload google-inventory file //
+                                                                                $.ajax({
+                                                                                        type: "POST",
+                                                                                        url: "save_price_quantity.php",
+                                                                                        success: function(response) {
+                
+                                                                                            $("div#messages").html( $("div#messages").html() + response );
+                
+                                                                                            // output and upload qBike file //
+                                                                                            $.ajax({
+                                                                                                    type: "POST",
+                                                                                                    url: "save_qbike_listings.php",
+                                                                                                    success: function(response) {
+                                                                                                        $this.spinner('remove');
+                                                                                                        $("div#messages").html( $("div#messages").html() + response );
+                                                                                                        
+                                                                                                        // show chart
+                                                                                                        createChart();
+                                                                                                    }
+                                                                                            });
+                                                                                        }
+                                                                                });
+                                                                            }
+                                                                    });
+                                                              }
+                                                      });
+}
+                                                  }
+                                          });
+                                     }
+                                });
                             }
                        });
                     }
                 });
                 return false;
-            }
         });
         
         

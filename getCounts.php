@@ -1,4 +1,4 @@
 <?php
-require_once('mb_feeds_functions.php');
+require_once('functions.php');
 echo getItemCountsJSON(180);
 ?>

@@ -19,7 +19,7 @@ ini_set('display_errors', 'On');
 
 //include our functions file
 require_once('config.php');
-require_once('mb_feeds_functions.php');
+require_once('functions.php');
 
 //name of the output file
 $local_outfile = 'upload/google_local_products.txt';
@@ -69,7 +69,7 @@ if(!$results){
 while( $row = mysql_fetch_assoc($results) ){
 
 	//get the values we need
-	$product_id = stripslashes($row['ProductID']);
+	$item_id = stripslashes($row['itemid']);
 	$title = stripslashes($row['Title']);
 	$webitemid = stripcslashes($row['webitemid']);
 	$item_group_id = stripcslashes($row['item_group_id']);
@@ -84,7 +84,7 @@ while( $row = mysql_fetch_assoc($results) ){
 	$size = stripslashes($row['Size']);
 	
 	// get fields from SE file
-	$sql = "select Description,ProductType,GoogleProductCategory from ONLINE_LISTINGS where OldID = '$webitemid' limit 1";
+	$sql = "select Description,ProductType,GoogleProductCategory from ONLINE_LISTINGS where itemid = '$webitemid' limit 1";
 	$ext_results = mysql_query($sql);
 	$ext_row = mysql_fetch_assoc($ext_results);
 	$description = $ext_row['Description'];
@@ -93,7 +93,7 @@ while( $row = mysql_fetch_assoc($results) ){
 	
 	//concat the data onto our string
 	//using tabs as delimiters
-	$data_string .= $product_id . "\t" . 
+	$data_string .= $item_id . "\t" . 
 			$brand." ".$title . "\t" .
 			$webitemid . "\t" .
 			$item_group_id . "\t" .

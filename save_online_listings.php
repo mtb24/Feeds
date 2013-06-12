@@ -18,7 +18,7 @@ ini_set('display_errors', 'On');
 
 //include our functions file
 require_once('config.php');
-require_once('mb_feeds_functions.php');
+require_once('functions.php');
 
 
 //name of the output file
@@ -42,7 +42,7 @@ $data_string = 	'link' . "\t" .
 		'price' . "\t" . 
 		'availability' . "\t" . 
 		'expiration date' . "\t" .
-		'id' . "\t" .
+		'itemid' . "\t" .
 		'mpn' . "\t" . 
 		'gtin' . "\t" . 
 		'color' . "\t" . 
@@ -58,7 +58,7 @@ $query = "select * from ONLINE_LISTINGS where 1";
 $results = mysql_query($query);
 //check for general error
 if(!$results){
-	$error_message = "Im sorry, there was a database select error. 375";
+	$error_message = "Im sorry, there was a database select error";
 	errorHandler($error_message);
 }
 /////////////////////
@@ -83,8 +83,7 @@ while( $row = mysql_fetch_assoc($results) ){
 	$price = stripslashes($row['Price']);
 	$availability = stripslashes($row['Availability']);
 	$expiration_date = stripslashes($row['ExpirationDate']);
-	$item_id = stripslashes($row['OldID']);
-	//$old_id = stripslashes($row['OldID']);
+	$item_id = stripslashes($row['itemid']);
 	$mpn = stripslashes($row['MPN']);
 	$gtin = stripslashes($row['GTIN']);
 	$color = stripslashes($row['Color']);
@@ -119,8 +118,6 @@ while( $row = mysql_fetch_assoc($results) ){
 			$shipping . "\t" .
 			$adwords_labels . "\n"; 
 }
-
-//echo "<br><br>data_string is $data_string<br><br>";
 
 //////////////////////////////////////
 //////////////////////////////////////

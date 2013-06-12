@@ -9,7 +9,7 @@ error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 'On');
 
 //include our functions file
-require_once('mb_feeds_functions.php');
+require_once('functions.php');
 
 //name of the text datafile
 $datafile = $feedSettings[8]['file'];
@@ -48,7 +48,7 @@ if($handle){
 		$price = $exploded_tab_array[8];
 		$availability = $exploded_tab_array[9];
 		$expiration_date = $exploded_tab_array[10];
-		$id = $exploded_tab_array[11];
+		$itemid = $exploded_tab_array[11];
 		$mpn = $exploded_tab_array[12];
 		$gtin = $exploded_tab_array[13];
 		$color = $exploded_tab_array[14];
@@ -64,7 +64,7 @@ if($handle){
 		if($count > 0){
 			
 			//call our function to add a new Item and get back the InsertID
-			$item_id = insertNewOnlineListing($link, $condition, $brand, $title, $description, $image_link, $product_type, $google_product_category, $price, $availability, $expiration_date, $id, $mpn, $gtin, $color, $size, $shipping_weight, $shipping, $gender, $age_group);
+			$item_id = insertNewOnlineListing($link, $condition, $brand, $title, $description, $image_link, $product_type, $google_product_category, $price, $availability, $expiration_date, $itemid, $mpn, $gtin, $color, $size, $shipping_weight, $shipping, $gender, $age_group);
 		}
 
 		//incremement the counter

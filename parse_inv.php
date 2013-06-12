@@ -19,7 +19,7 @@ error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 'On');
 
 //include our functions file
-require_once('mb_feeds_functions.php');
+require_once('functions.php');
 
 //name of the text datafile
 $datafile = $feedSettings[1]['file'];
@@ -96,13 +96,14 @@ if($handle){
 			$gtin_matches++;
 
 			// Check if item is in a group, and update tables if true
-			$online_id = $gtin_assoc['OldID'];
-			$item_group_id = (checkItemsForGroups($online_id)) ? my_split($online_id) : '';
+			$itemid = $gtin_assoc['itemid'];
+			$item_group_id = (checkItemsForGroups($itemid)) ? my_split($itemid) : '';
 			
 			// insert a new record in LOCAL_PRODUCT_LISTINGS
 			$insert_id = insertNewLocalProductListing(
+								$itemid,
 								$description,
-								$online_id,
+								$itemid,
 								$item_group_id,
 								$gtin1, 
 								$mpn, 
@@ -127,13 +128,14 @@ if($handle){
 			$mpn_matches++;
 
  			// Check if item is in a group, and update tables if true
-			$online_id = $mpn_assoc['OldID'];
-			$item_group_id = (checkItemsForGroups($online_id)) ? my_split($online_id) : '';
+			$itemid = $mpn_assoc['itemid'];
+			$item_group_id = (checkItemsForGroups($itemid)) ? my_split($itemid) : '';
 			
 			// insert a new record in LOCAL_PRODUCT_LISTINGS
 			$insert_id = insertNewLocalProductListing(
+								$itemid,
 								$description,
-								$online_id,
+								$itemid,
 								$item_group_id,
 								$gtin1, 
 								$mpn, 
@@ -169,7 +171,7 @@ if($handle){
 				if($quantity > 1){
 					insertNewPriceQuantity(
 						       $store_id, 
-						       $online_id,
+						       $itemid,
 						       $item_group_id,
 						       $quantity,
 						       $price,
